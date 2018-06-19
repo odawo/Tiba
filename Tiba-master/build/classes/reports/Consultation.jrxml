@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="631ecd1c-aa7a-49cc-8a65-2047a2af3927">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="138" y="18" width="265" height="36" uuid="29b011c5-cee9-4955-8f0a-49dc8ee79137"/>
+				<box topPadding="5">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHULAIMBO MEDICAL HOSPITAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="210" y="0" width="137" height="25" uuid="f8b86e31-512e-43fd-983e-24bf2c0d8a48"/>
+				<box topPadding="3"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTATION BILL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="440" y="41" width="100" height="20" uuid="7c6b1d51-5f2e-4ca1-ae43-283f6a67dd36"/>
+				<text><![CDATA[DATE ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="19" width="100" height="20" uuid="f9475d17-5c5b-4cf8-9be0-c080618ca533"/>
+				<text><![CDATA[Patient ID : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="57" width="100" height="20" uuid="58e983fe-55c4-4cfe-9592-c255bfebe0a6"/>
+				<text><![CDATA[Name : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="19" width="100" height="20" uuid="8b2d0308-053d-4ff3-b5eb-df07525a5ddd"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="57" width="100" height="20" uuid="9b5b3023-320c-4e6c-8132-0ab97a2f6a4c"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="25" width="100" height="20" uuid="746dcae7-b7d4-4898-a04c-19871351cc39"/>
+				<text><![CDATA[Consultation : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="25" width="100" height="20" uuid="7a7193a0-b310-43af-8138-b08c2f838667"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="34" width="100" height="20" uuid="77fea260-eec2-486a-be3b-7b789f9e83d1"/>
+				<text><![CDATA[Total Costs : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="34" width="100" height="20" uuid="014cf8de-ea33-470e-ba3c-3792c36aedab"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
