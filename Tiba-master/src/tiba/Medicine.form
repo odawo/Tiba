@@ -173,13 +173,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="rmMjButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="addMjButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="completeBtn" alignment="0" max="32767" attributes="0"/>
                       <Component id="exitjButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="refreshjButton1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -189,6 +190,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="refreshjButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="addMjButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="rmMjButton" min="-2" max="-2" attributes="0"/>
@@ -232,6 +235,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitjButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="refreshjButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="REFRESH"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshjButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -316,34 +327,33 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="medidjTextField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="mednamejTextField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField1" alignment="0" pref="166" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="snoTextField" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="manDate1" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="expDate" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="medidjTextField1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="mednamejTextField2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField1" alignment="0" pref="166" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" max="32767" attributes="0"/>
+                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="snoTextField" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="expDate" min="-2" pref="166" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel3" max="32767" attributes="0"/>
-                                      <Component id="jLabel4" max="32767" attributes="0"/>
-                                      <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="unitCostjTextField3" max="32767" attributes="0"/>
-                                      <Component id="totUnitCostjTextField4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="unitsTextFiled" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="unitCostjTextField3" max="32767" attributes="0"/>
+                                  <Component id="totUnitCostjTextField4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="unitsTextFiled" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="manDate1" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="confirmjButton" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -355,7 +365,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="missedjRadioButton2" pref="91" max="32767" attributes="0"/>
-                              <Component id="totalCostButton1" max="32767" attributes="0"/>
+                              <Component id="totaOveralllCostText" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="clearjButton1" max="32767" attributes="0"/>
@@ -375,7 +385,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="totalCostButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="totaOveralllCostText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="clearjButton1" min="-2" max="-2" attributes="0"/>
@@ -413,9 +423,12 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="manDate1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="manDate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -426,6 +439,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="toolTipText" type="java.lang.String" value="test id"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="medidjTextField1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="mednamejTextField2">
           <Properties>
@@ -471,7 +487,7 @@
             <Property name="text" type="java.lang.String" value="Overall Cost : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="totalCostButton1">
+        <Component class="javax.swing.JTextField" name="totaOveralllCostText">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -524,6 +540,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="unitsTextFiled">
+        </Component>
+        <Component class="javax.swing.JButton" name="confirmjButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CONFIRM - MED"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmjButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -39,7 +39,7 @@ public class Test extends javax.swing.JFrame {
         getPatientData();
         testsDone();
         fetchTests();
-        getTotalCost();
+//        getTotalCost();
     }
 
     /**
@@ -80,7 +80,7 @@ public class Test extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         unitCostjTextField3 = new javax.swing.JTextField();
-        totalCostButton = new javax.swing.JTextField();
+        totalCostTxt = new javax.swing.JTextField();
         confirmjButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
@@ -306,7 +306,7 @@ public class Test extends javax.swing.JFrame {
 
         unitCostjTextField3.setEditable(false);
 
-        totalCostButton.setEditable(false);
+        totalCostTxt.setEditable(false);
 
         confirmjButton.setText("CONFIRM");
         confirmjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -342,7 +342,7 @@ public class Test extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(totalCostButton))
+                            .addComponent(totalCostTxt))
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
@@ -382,7 +382,7 @@ public class Test extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(totalCostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(totalCostTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -518,7 +518,7 @@ public class Test extends javax.swing.JFrame {
             ps.setString(1, idjTextField1.getText());
             ps.setString(2, unitCostjTextField3.getText());
 
-            ps.executeQuery();
+            ps.executeUpdate();
 
     //                printReceipt();
             JOptionPane.showMessageDialog(null, "printing receipt...");
@@ -538,6 +538,14 @@ public class Test extends javax.swing.JFrame {
     private void refreshjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButton1ActionPerformed
         // TODO add your handling code here:
         fetchTests();
+        
+        idjTextField1.setText("");
+        namejTextField2.setText("");
+        jTextField1.setText("patient id");
+        outcomejTextArea2.setText("");
+        unitCostjTextField3.setText("");
+        confirmjRadioButton1.setSelected(false);
+        missedjRadioButton2.setSelected(false);
     }//GEN-LAST:event_refreshjButton1ActionPerformed
 
     private void confirmjRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjRadioButton1ActionPerformed
@@ -577,24 +585,15 @@ public class Test extends javax.swing.JFrame {
 
     private void confirmjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjButtonActionPerformed
         // TODO add your handling code here:
-        try{
-            Connection con = DriverManager.getConnection(url, "root", pwd);
-            String query = "INSERT INTO patientresult (patientid, testid, testname, testoutcome, testdate)" 
-                            + "VALUES(?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, jTextField1.getText());
-            ps.setString(2, idjTextField1.getText());
-            ps.setString(3, namejTextField2.getText());
-            ps.setString(4, outcomejTextArea2.getText());
-            ps.setString(5, dateLbl.getText());
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "SAVED");
-            
-            clearText();
-        } catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+        
+        int totcost;
+        if(totalCostTxt.getText().isEmpty()) {
+            totcost = 0 + Integer.valueOf((unitCostjTextField3.getText()));
+        } else {
+            totcost = Integer.valueOf(totalCostTxt.getText()) + Integer.valueOf((unitCostjTextField3.getText()));
         }
+        
+        totalCostTxt.setText(String.valueOf(totcost));
     }//GEN-LAST:event_confirmjButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -646,7 +645,7 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JButton rmjButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JButton submitjButton;
-    private javax.swing.JTextField totalCostButton;
+    private javax.swing.JTextField totalCostTxt;
     private javax.swing.JTextField unitCostjTextField3;
     // End of variables declaration//GEN-END:variables
 
@@ -700,23 +699,23 @@ public class Test extends javax.swing.JFrame {
 //        }
     }
 
-    private void getTotalCost() {
-        String input = unitCostjTextField3.getText();
-//        int[] values = new int[input.length()];
-        int sum = 0;
-        int i = 0;
-        while(i < input.length()) {
-            int number;
-            if(input.substring(i, i+1).equals("-")) {
-                number = Integer.parseInt(input.substring(i, i+2));
-                i += 2;
-            } else {
-                number = Integer.parseInt(input.substring(i, i+1));
-                i++;
-            }
-            sum += number;
-        }
-    }
+//    private void getTotalCost() {
+//        String input = unitCostjTextField3.getText();
+////        int[] values = new int[input.length()];
+//        int sum = 0;
+//        int i = 0;
+//        while(i < input.length()) {
+//            int number;
+//            if(input.substring(i, i+1).equals("-")) {
+//                number = Integer.parseInt(input.substring(i, i+2));
+//                i += 2;
+//            } else {
+//                number = Integer.parseInt(input.substring(i, i+1));
+//                i++;
+//            }
+//            sum += number;
+//        }
+//    }
 
     private void testsDone() {
         reasonjTextArea1.setEnabled(false);

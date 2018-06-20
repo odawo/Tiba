@@ -573,11 +573,9 @@ public class Reception extends javax.swing.JFrame {
 
     private void appointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentBtnActionPerformed
         // TODO add your handling code here:
-        String[] ptitd = new String[1];
         String pid = ptTextField.getText();
-        String fname = fnameTextField.getText();
+        String[] ptitd = new String[1];
         ptitd[0] = pid;
-        ptitd[1] = fname;
         Appointment.main(ptitd);
         
         new Appointment().setVisible(true);

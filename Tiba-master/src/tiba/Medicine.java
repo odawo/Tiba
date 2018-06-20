@@ -62,6 +62,7 @@ public class Medicine extends javax.swing.JFrame {
         rmMjButton = new javax.swing.JButton();
         completeBtn = new javax.swing.JButton();
         exitjButton = new javax.swing.JButton();
+        refreshjButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         infoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,7 +76,7 @@ public class Medicine extends javax.swing.JFrame {
         unitCostjTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        totalCostButton1 = new javax.swing.JTextField();
+        totaOveralllCostText = new javax.swing.JTextField();
         snoTextField = new javax.swing.JTextField();
         expDate = new javax.swing.JTextField();
         manDate1 = new javax.swing.JTextField();
@@ -84,6 +85,7 @@ public class Medicine extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         totUnitCostjTextField4 = new javax.swing.JTextField();
         unitsTextFiled = new javax.swing.JTextField();
+        confirmjButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +176,13 @@ public class Medicine extends javax.swing.JFrame {
             }
         });
 
+        refreshjButton1.setText("REFRESH");
+        refreshjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshjButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -184,13 +193,16 @@ public class Medicine extends javax.swing.JFrame {
                     .addComponent(rmMjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addMjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(completeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exitjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(exitjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refreshjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshjButton1)
+                .addGap(18, 18, 18)
                 .addComponent(addMjButton)
                 .addGap(18, 18, 18)
                 .addComponent(rmMjButton)
@@ -248,6 +260,11 @@ public class Medicine extends javax.swing.JFrame {
 
         medidjTextField1.setEditable(false);
         medidjTextField1.setToolTipText("test id");
+        medidjTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medidjTextField1ActionPerformed(evt);
+            }
+        });
 
         mednamejTextField2.setEditable(false);
         mednamejTextField2.setToolTipText("test name");
@@ -284,7 +301,7 @@ public class Medicine extends javax.swing.JFrame {
 
         jLabel5.setText("Overall Cost : ");
 
-        totalCostButton1.setEditable(false);
+        totaOveralllCostText.setEditable(false);
 
         snoTextField.setEditable(false);
         snoTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -320,6 +337,13 @@ public class Medicine extends javax.swing.JFrame {
 
         totUnitCostjTextField4.setEditable(false);
 
+        confirmjButton.setText("CONFIRM - MED");
+        confirmjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -327,27 +351,27 @@ public class Medicine extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(medidjTextField1)
-                                .addComponent(mednamejTextField2)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                            .addComponent(snoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(83, 83, 83)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(expDate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(unitCostjTextField3)
-                                    .addComponent(totUnitCostjTextField4)
-                                    .addComponent(unitsTextFiled)))))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(medidjTextField1)
+                        .addComponent(mednamejTextField2)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                    .addComponent(snoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(manDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(expDate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(unitCostjTextField3)
+                                .addComponent(totUnitCostjTextField4)
+                                .addComponent(unitsTextFiled))))
+                    .addComponent(confirmjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -357,7 +381,7 @@ public class Medicine extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(missedjRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(totalCostButton1)))
+                            .addComponent(totaOveralllCostText)))
                     .addComponent(clearjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -371,7 +395,7 @@ public class Medicine extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(totalCostButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totaOveralllCostText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addComponent(clearjButton1)
                 .addGap(29, 29, 29))
@@ -400,9 +424,11 @@ public class Medicine extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(unitsTextFiled, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(19, 19, 19)
-                .addComponent(manDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmjButton))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -680,6 +706,41 @@ public class Medicine extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
+    private void confirmjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjButtonActionPerformed
+        // TODO add your handling code here:
+        int totunitcost, totoverallcost;
+        totunitcost = Integer.valueOf((unitCostjTextField3.getText())) * Integer.valueOf(unitsTextFiled.getText());
+
+        if(totaOveralllCostText.getText().isEmpty()) {
+            totoverallcost = 0 + (Integer.valueOf(totUnitCostjTextField4.getText()) + Integer.valueOf((unitCostjTextField3.getText())) );
+        } else {
+            totoverallcost = Integer.valueOf(totaOveralllCostText.getText()) + totunitcost;
+        }
+        
+        totUnitCostjTextField4.setText(String.valueOf(totunitcost));
+        totaOveralllCostText.setText(String.valueOf(totoverallcost));
+    }//GEN-LAST:event_confirmjButtonActionPerformed
+
+    private void refreshjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButton1ActionPerformed
+        // TODO add your handling code here:
+        fetchPhamQ();
+        
+        medidjTextField1.setText("");
+        mednamejTextField2.setText("");
+        jTextField1.setText("patient ID");
+        snoTextField.setText("");
+        manDate1.setText("");
+        expDate.setText("");
+        unitsTextFiled.setText("");
+        unitCostjTextField3.setText("");
+        totUnitCostjTextField4.setText("");
+        
+    }//GEN-LAST:event_refreshjButton1ActionPerformed
+
+    private void medidjTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medidjTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medidjTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -698,6 +759,7 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JButton addMjButton;
     private javax.swing.JButton clearjButton1;
     private javax.swing.JButton completeBtn;
+    private javax.swing.JButton confirmjButton;
     private javax.swing.JRadioButton confirmjRadioButton1;
     private javax.swing.JLabel dateLbl;
     private javax.swing.JButton exitjButton;
@@ -720,11 +782,12 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JTextField medidjTextField1;
     private javax.swing.JTextField mednamejTextField2;
     private javax.swing.JRadioButton missedjRadioButton2;
+    private javax.swing.JButton refreshjButton1;
     private javax.swing.JButton rmMjButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JTextField snoTextField;
     private javax.swing.JTextField totUnitCostjTextField4;
-    private javax.swing.JTextField totalCostButton1;
+    private javax.swing.JTextField totaOveralllCostText;
     private javax.swing.JTextField unitCostjTextField3;
     private javax.swing.JTextField unitsTextFiled;
     // End of variables declaration//GEN-END:variables

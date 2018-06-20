@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -59,6 +61,7 @@ public class Appointment extends javax.swing.JFrame {
         emailTextField = new javax.swing.JTextField();
         dateLabel1 = new javax.swing.JLabel();
         datejTextField = new javax.swing.JTextField();
+        timeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,10 +103,25 @@ public class Appointment extends javax.swing.JFrame {
         });
 
         fnamejTextField.setText("FIRST NAME");
+        fnamejTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fnamejTextFieldMouseClicked(evt);
+            }
+        });
 
         lnamejTextField.setText("LAST NAME");
+        lnamejTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lnamejTextFieldMouseClicked(evt);
+            }
+        });
 
         drIDjTextField.setText("DOCTOR ID");
+        drIDjTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drIDjTextFieldMouseClicked(evt);
+            }
+        });
         drIDjTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 drIDjTextFieldKeyPressed(evt);
@@ -111,13 +129,28 @@ public class Appointment extends javax.swing.JFrame {
         });
 
         telephonejTextField.setText("TELEPHONE");
+        telephonejTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                telephonejTextFieldMouseClicked(evt);
+            }
+        });
 
         timeTextField4.setText("SET TIME");
 
         emailTextField.setText("EMAIL");
+        emailTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailTextFieldMouseClicked(evt);
+            }
+        });
 
         datejTextField.setText("SET DATE(yy-mm-dd)");
         datejTextField.setToolTipText("");
+        datejTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                datejTextFieldMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +187,9 @@ public class Appointment extends javax.swing.JFrame {
                                 .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dateLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,29 +197,32 @@ public class Appointment extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Label)
-                    .addComponent(dateLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telephonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(drIDjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitbutton)
-                    .addComponent(createjButton))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Label)
+                            .addComponent(dateLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(telephonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drIDjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(timeTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(exitbutton)
+                            .addComponent(createjButton)))
+                    .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -222,40 +260,53 @@ public class Appointment extends javax.swing.JFrame {
     }//GEN-LAST:event_exitbuttonActionPerformed
 
     private void createjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createjButtonActionPerformed
-        // TODO add your handling code here:
-        
         try {
-//            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url, "root", pwd);
-            
-            String qr = "SELECT * FROM patient WHERE patientid=?";
-            PreparedStatement psp = conn.prepareStatement(qr);
-            ResultSet rs = psp.executeQuery();
-            if(rs.next()) {
-                String query = "INSERT INTO appointments (patientid, fname, lname, email, telephone, doctorid, date, time)" 
-                          + "values(?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, pidTextField.getText());
-                ps.setString(2, fnamejTextField.getText());
-                ps.setString(3, lnamejTextField.getText());
-                ps.setString(4, emailTextField.getText());
-                ps.setString(5, telephonejTextField.getText());
-                ps.setString(6, drIDjTextField.getText());
-                ps.setString(7, datejTextField.getText());
-                ps.setString(8, timeTextField4.getText());
+            // TODO add your handling code here:
+
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            final String queryCheck = "SELECT doctorid from pharmlab WHERE patientid='"+pidTextField.getText()+"'";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, drIDjTextField.getText());
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                
+                 try {
+                     Connection conn = DriverManager.getConnection(url, "root", pwd);
+                     String query = "INSERT INTO appointments (patientid, fname, lname, email, telephone, doctorid, date, time)" 
+                              + "values(?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement psp = conn.prepareStatement(query);
+                    ResultSet rs = psp.executeQuery();
+                    
+                    if(rs.next()) {
+                    
+                    ps.setString(1, pidTextField.getText());
+                    ps.setString(2, fnamejTextField.getText());
+                    ps.setString(3, lnamejTextField.getText());
+                    ps.setString(4, emailTextField.getText());
+                    ps.setString(5, telephonejTextField.getText());
+                    ps.setString(6, drIDjTextField.getText());
+                    ps.setString(7, datejTextField.getText());
+                    ps.setString(8, timeTextField4.getText());
 
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "APPOINTMENT SET FOR : " + datejTextField.getText());
                 
 //                sendMail();
             } else {
-                JOptionPane.showMessageDialog(null, "ID doesn't exit!");
+                JOptionPane.showMessageDialog(null, "error");
             }
             
         
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Appointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+       
         
     }//GEN-LAST:event_createjButtonActionPerformed
 
@@ -270,6 +321,34 @@ public class Appointment extends javax.swing.JFrame {
     private void drIDjTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_drIDjTextFieldKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_drIDjTextFieldKeyPressed
+
+    private void fnamejTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fnamejTextFieldMouseClicked
+        // TODO add your handling code here:
+        fnamejTextField.setText("");
+    }//GEN-LAST:event_fnamejTextFieldMouseClicked
+
+    private void lnamejTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lnamejTextFieldMouseClicked
+        // TODO add your handling code here:
+        lnamejTextField.setText("");
+    }//GEN-LAST:event_lnamejTextFieldMouseClicked
+
+    private void emailTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextFieldMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextFieldMouseClicked
+
+    private void telephonejTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telephonejTextFieldMouseClicked
+        // TODO add your handling code here:
+        telephonejTextField.setText("");
+    }//GEN-LAST:event_telephonejTextFieldMouseClicked
+
+    private void drIDjTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drIDjTextFieldMouseClicked
+        // TODO add your handling code here:
+        drIDjTextField.setText("");
+    }//GEN-LAST:event_drIDjTextFieldMouseClicked
+
+    private void datejTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datejTextFieldMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_datejTextFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -299,7 +378,7 @@ public class Appointment extends javax.swing.JFrame {
         //</editor-fold>
 
         ptidtext = args[0];
-        fnText = args[1];
+//        fnText = args[1];
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -324,6 +403,7 @@ public class Appointment extends javax.swing.JFrame {
     private javax.swing.JTextField lnamejTextField;
     private javax.swing.JTextField pidTextField;
     private javax.swing.JTextField telephonejTextField;
+    private javax.swing.JLabel timeLabel;
     private javax.swing.JTextField timeTextField4;
     // End of variables declaration//GEN-END:variables
 
@@ -331,8 +411,8 @@ public class Appointment extends javax.swing.JFrame {
         java.time.LocalDate ld = LocalDate.now();
         dateLabel1.setText(ld.toString());
         
-        java.time.LocalTime lt = LocalTime.now();
-        timeTextField4.setText(lt.toString());
+//        java.time.LocalTime lt = ;
+//        timeLabel.setText(lt.toString());
     }
 
     private void completeTextFields() {
@@ -347,7 +427,8 @@ public class Appointment extends javax.swing.JFrame {
 
     private void ptId() {
         pidTextField.setText(ptidtext);
-        fnamejTextField.setText(fnText);
+//        fnamejTextField.setText(fnText);
     }
+    
 
 }

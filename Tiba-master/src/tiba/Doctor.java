@@ -33,6 +33,7 @@ public class Doctor extends javax.swing.JFrame {
     public Doctor() {
         initComponents();
         docid();
+        fetchLabData();
         fetchRecpData();
         setDate();
     }
@@ -377,17 +378,17 @@ public class Doctor extends javax.swing.JFrame {
         fromLABjTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         fromLABjTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Patient ID", "Test ID", "Test Name", "Test Oucome"
+                "Patient ID", "Test ID", "Test Name", "Test Oucome", "Test Cost", "Test Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -772,7 +773,7 @@ public class Doctor extends javax.swing.JFrame {
         try {
             ResultSet rs = null;
             Connection conn = DriverManager.getConnection(url, "root", pwd);
-            String query = "SELECT * FROM patientresult";
+            String query = "SELECT patientid, testid, testname, testoutcome, testdate FROM patientresult";
             PreparedStatement pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
             
