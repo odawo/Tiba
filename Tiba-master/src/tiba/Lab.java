@@ -342,20 +342,11 @@ public class Lab extends javax.swing.JFrame {
 
     private void testjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testjButtonActionPerformed
         // TODO add your handling code here:
-        
-        String lid[] = new String[1];
-        String j = labIDlabel.getText() + ", Patient ID :" + pidLabel.getText();
-        lid[0] = j;
-        Test.main(lid);
-        
-//        patientData();
-        
-        UserPatient up = new UserPatient();
-        String r = requestsjTextArea1.getText();
-        int x = Integer.parseInt(pidLabel.getText());
-        up.setId(x);
-        up.setTestNeeded(r);
-        
+        String j ="<html> Patient ID : "+ pidLabel.getText()+" "+"<br>"+"Lab ID :  "+ labIDlabel.getText()+" "+"<br>" + "Required :" + requestsjTextArea1.getText();
+
+        String info[] = new String[1];
+        info[0] = j;
+        Test.main(info);
         this.dispose();
         new Test().setVisible(true);
     }//GEN-LAST:event_testjButtonActionPerformed

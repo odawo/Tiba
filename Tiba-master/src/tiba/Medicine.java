@@ -40,7 +40,6 @@ public class Medicine extends javax.swing.JFrame {
         setDate();
         getRequests();
         fetchPhamQ();
-        getTotalUnitCosts();
     }
 
     /**
@@ -471,6 +470,9 @@ public class Medicine extends javax.swing.JFrame {
                 manDate1.setText(resultSet.getString("manufacturedate"));
                 expDate.setText(resultSet.getString("expirydate"));
             }
+            
+            getTotalUnitCosts();
+
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -734,7 +736,6 @@ public class Medicine extends javax.swing.JFrame {
 
     private void getRequests() {
         infoLabel.setText(phamid);
-        
     }
     
     private void fetchPhamQ() {
