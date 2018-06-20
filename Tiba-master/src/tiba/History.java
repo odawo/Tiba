@@ -298,11 +298,11 @@ public class History extends javax.swing.JFrame {
     private void fetchHistory() {
                 try {
             Connection conn = DriverManager.getConnection(url, "root", pwd);
-            String query = "SELECT patient.patientid, doctor.doctorid, medication.medicineid, tests.testid, pharmlab.diagnosis "
-                    + " FROM patient, pharmlab, patientresult, prescription, doctor "
+            String query = "SELECT pharmlab.patientid, pharmlab.doctorid, precription.medicineid, patientresult.testid, pharmlab.diagnosis "
+                    + " FROM patient, doctor, medication, tests, pharmlab "
                     + "INNER JOIN pharmlab ON patient.patientid = pharmlab.patientid"
                     + "INNER JOIN pharmlab ON doctor.doctorid = pharmlab.doctorid "
-                    + "INNER JOIN patientresult ON test.testid = patientresult.testid "
+                    + "INNER JOIN patientresult ON tests.testid = patientresult.testid "
                     + "INNER JOIN precription ON medication.medicineid = prescription.medicineid "
                     + "INNER JOIN pharmlab ON pharmlab.diagnosis = pharmlab.diagnosis "; 
             PreparedStatement pst = conn.prepareStatement(query);

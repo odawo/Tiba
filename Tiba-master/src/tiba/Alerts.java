@@ -477,11 +477,10 @@ public class Alerts extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fetchDisdata() {
-        DefaultTableModel model = (DefaultTableModel)disAlertTable.getModel();
         try {
             ResultSet rs = null;
             Connection conn = DriverManager.getConnection(url, "root", pwd);
-            String query = "SELECT diagnosis, timing FROM pharmlab WHERE patient.patientid = pharmlab.patientid";
+            String query = "SELECT diagnosis, timing FROM pharmlab";
             PreparedStatement pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
             
