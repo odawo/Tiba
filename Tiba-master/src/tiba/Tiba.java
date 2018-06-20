@@ -31,7 +31,8 @@ public class Tiba extends Application{
 
             mc = DriverManager.getConnection(mysqlurl,"root", mysqlpwd);
             System.out.print("Database connection successful");
-//            mc.rollback();
+            
+            new Home().setVisible(true);
             
         } catch (Exception e) {
                       

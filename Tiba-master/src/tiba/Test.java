@@ -461,16 +461,16 @@ public class Test extends javax.swing.JFrame {
 
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
         // TODO add your handling code here:
-        TableModel model = new DefaultTableModel();
-        TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(model);
-        jTable1.setRowSorter(rowSorter);
-        String search = searchTextField.getText();
-        if (search.length() == 0) {
-            rowSorter.setRowFilter(null);
-        } else {
-            rowSorter.setRowFilter(RowFilter.regexFilter(search));
-        }
-        
+//        TableModel model = new DefaultTableModel();
+//        TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(model);
+//        jTable1.setRowSorter(rowSorter);
+//        String search = searchTextField.getText();
+//        if (search.length() == 0) {
+//            rowSorter.setRowFilter(null);
+//        } else {
+//            rowSorter.setRowFilter(RowFilter.regexFilter(search));
+//        }
+//        
         
         ResultSet rs = null;
         try {
@@ -495,7 +495,7 @@ public class Test extends javax.swing.JFrame {
         
         int r = ThreadLocalRandom.current().nextInt(10000);
         
-        String id = JOptionPane.showInputDialog("TEST ID : " + String.valueOf(r));
+        String id = JOptionPane.showInputDialog("TEST ID : ", String.valueOf(r));
         String name = JOptionPane.showInputDialog("TEST NAME : ");
         String cost = JOptionPane.showInputDialog("COST : ");
         

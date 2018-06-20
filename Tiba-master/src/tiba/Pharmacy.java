@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -96,14 +97,15 @@ public class Pharmacy extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IDlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phamIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
+                .addComponent(dateLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(dateLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(123, 123, 123)
+                        .addGap(225, 225, 225)
                         .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -111,13 +113,18 @@ public class Pharmacy extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(IDlabel)
-                    .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(phamIDLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dateLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IDlabel)
+                            .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phamIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -216,7 +223,7 @@ public class Pharmacy extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(drIDTextField)
                     .addComponent(ptidTxtField))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,14 +281,14 @@ public class Pharmacy extends javax.swing.JFrame {
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
         // TODO add your handling code here:
         try {
+            ResultSet rs = null;
 
             Connection conn =  DriverManager.getConnection(url, "root", pwd);
             String query = "SELECT patientid, doctorid, requests FROM pharmlab where patientid=?";
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, searchTextField.getText());
-            pst.executeQuery();
+            rs = pst.executeQuery();
 
-            ResultSet rs = null;
             while (rs.next()) {
                 ptidTxtField.setText(rs.getString("patientid"));
                 drIDTextField.setText(rs.getString("doctorid"));
@@ -310,23 +317,14 @@ public class Pharmacy extends javax.swing.JFrame {
 
     private void patientMedsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientMedsjButtonActionPerformed
         // TODO add your handling code here:
-            String pid = ptidTxtField.getText();
-            String drid = drIDTextField.getText();
-            String req = reqjTextArea1.getText();
-            
-            String M = pid +"/t "+ "Dr ID:"+ drid +"/t "+ "Required : "+ req;
+            String M = "<html> Patient ID : "+ptidTxtField.getText() +" "+"<br>"+ "Dr ID :"+ drIDTextField.getText()+" " +"<br>"+ "Required : "+ reqjTextArea1.getText()+"</html>";
+
             String phaminfo[] = new String[1];
             phaminfo[0] = M;
             Medicine.main(phaminfo);
                 
-//                String phampinfo[] = new String[1];
-//                phampinfo[1] = p;
-//                Medicine.main(phampinfo);
-                
-        if(pharmacy==null) {
-            this.dispose();
-            pharmacy = new Pharmacy();
-        }
+        this.dispose();
+        new Medicine().setVisible(true);
     }//GEN-LAST:event_patientMedsjButtonActionPerformed
 
     private void exitjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitjButton1ActionPerformed
@@ -398,8 +396,7 @@ public class Pharmacy extends javax.swing.JFrame {
     }
 
     private void setDate() {
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(calendar.getTime().getDate());
+        java.time.LocalDate date = LocalDate.now();
         dateLbl1.setText(date.toString());
     }
 }
