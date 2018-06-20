@@ -80,7 +80,6 @@ public class Medicine extends javax.swing.JFrame {
         snoTextField = new javax.swing.JTextField();
         expDate = new javax.swing.JTextField();
         manDate1 = new javax.swing.JTextField();
-        clearjButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         totUnitCostjTextField4 = new javax.swing.JTextField();
@@ -324,13 +323,6 @@ public class Medicine extends javax.swing.JFrame {
             }
         });
 
-        clearjButton1.setText("CLEAR");
-        clearjButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearjButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Units : ");
 
         jLabel6.setText("Total Unit Cost : ");
@@ -373,16 +365,13 @@ public class Medicine extends javax.swing.JFrame {
                                 .addComponent(unitsTextFiled))))
                     .addComponent(confirmjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(confirmjRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(confirmjRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(missedjRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(totaOveralllCostText)))
-                    .addComponent(clearjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(missedjRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                    .addComponent(totaOveralllCostText))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -396,9 +385,7 @@ public class Medicine extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(totaOveralllCostText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addComponent(clearjButton1)
-                .addGap(29, 29, 29))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -449,7 +436,7 @@ public class Medicine extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)))))
+                                .addComponent(jScrollPane1)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -567,47 +554,25 @@ public class Medicine extends javax.swing.JFrame {
     private void completeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeBtnActionPerformed
         // TODO add your handling code here:
 //        SAVE DATA TO DB, PRINT RECEIPT, 
-        JOptionPane.showMessageDialog(null, "generate meds bill");
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            //            String col = jTable1.getValueAt(i, 1).toString();
-            String mid = jTable1.getValueAt(i, 0).toString();
-            String mname = jTable1.getValueAt(i, 1).toString();
-            Boolean checked = Boolean.valueOf(jTable1.getValueAt(i, 2).toString());
-            String mcost = jTable1.getValueAt(i, 3).toString();
-            String sno = jTable1.getValueAt(i, 4).toString();
-            String mftdate = jTable1.getValueAt(i, 5).toString();
-            String expdate = jTable1.getValueAt(i, 6).toString();
-            String date = jTable1.getValueAt(i, 7).toString();
-            ///            String colindex = jTable1.getModel().getValueAt(row, col);
-            if (checked) {
-                JOptionPane.showMessageDialog(null, "testing if it works " + mid + mname + mcost); //col
-                Double totMedsCosts = (Double.parseDouble(mcost));
-                JOptionPane.showMessageDialog(null, "to show sum of all meds costs "+totMedsCosts);
+         JOptionPane.showMessageDialog(null, "generate costs bill");
+//                testBill();
+        try {
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            String query = "UPDATE billing SET medicineid=?, medcost=? WHERE patientid='"+jTextField1.getText()+"'"
+                    + "VALUES(?,?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, medidjTextField1.getText());
+            ps.setString(2, totUnitCostjTextField4.getText());
 
-                pharmacyBill();
-                
-                try {
-                    Connection conn = DriverManager.getConnection(url, "root", pwd);
-                    String query = "INSERT INTO prescription (patientid, medicineid, medname, medcost, serialno, manufacturedate, expirydate, date)"
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement ps = conn.prepareStatement(query);
-                    ps.setString(1, jTextField1.getText());
-                    //                    ps.setString(2, col);
-                    ps.setString(2, mid);
-                    ps.setString(3, mname);
-                    ps.setString(4, mcost);
-                    ps.setString(5, sno);
-                    ps.setString(6, mftdate);
-                    ps.setString(7, expdate);
-                    ps.setString(8, dateLbl.getText());
+            ps.executeUpdate();
 
-                    ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "PATIENT : " + jTextField1.getText() + ", MEDICATION READY.");
-                }catch(SQLException | HeadlessException ex){
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            }
+    //                printReceipt();
+            JOptionPane.showMessageDialog(null, "printing receipt...");
+
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
         }
+               
 
     }//GEN-LAST:event_completeBtnActionPerformed
 
@@ -688,19 +653,6 @@ public class Medicine extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_manDate1ActionPerformed
 
-    private void clearjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearjButton1ActionPerformed
-        // TODO add your handling code here:
-        medidjTextField1.setText("");
-        mednamejTextField2.setText("");
-        jTextField1.setText("patient id");
-        unitCostjTextField3.setText("");
-        snoTextField.setText("");
-        manDate1.setText("");
-        expDate.setText("");
-        
-//        fetchPhamQ();
-    }//GEN-LAST:event_clearjButton1ActionPerformed
-
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
         jTextField1.setText("");
@@ -711,13 +663,13 @@ public class Medicine extends javax.swing.JFrame {
         int totunitcost, totoverallcost;
         totunitcost = Integer.valueOf((unitCostjTextField3.getText())) * Integer.valueOf(unitsTextFiled.getText());
 
-        if(totaOveralllCostText.getText().isEmpty()) {
+        totUnitCostjTextField4.setText(String.valueOf(totunitcost));
+        
+         if(totaOveralllCostText.getText().isEmpty()) {
             totoverallcost = 0 + (Integer.valueOf(totUnitCostjTextField4.getText()) + Integer.valueOf((unitCostjTextField3.getText())) );
         } else {
             totoverallcost = Integer.valueOf(totaOveralllCostText.getText()) + totunitcost;
         }
-        
-        totUnitCostjTextField4.setText(String.valueOf(totunitcost));
         totaOveralllCostText.setText(String.valueOf(totoverallcost));
     }//GEN-LAST:event_confirmjButtonActionPerformed
 
@@ -757,7 +709,6 @@ public class Medicine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PhamIdlabel1;
     private javax.swing.JButton addMjButton;
-    private javax.swing.JButton clearjButton1;
     private javax.swing.JButton completeBtn;
     private javax.swing.JButton confirmjButton;
     private javax.swing.JRadioButton confirmjRadioButton1;

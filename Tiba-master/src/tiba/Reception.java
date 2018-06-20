@@ -604,6 +604,7 @@ public class Reception extends javax.swing.JFrame {
             ps.executeUpdate();
             
             consultBill();
+            
             JOptionPane.showMessageDialog(null, ptTextField.getText() + " QUEUE FOR DR.");
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -765,20 +766,20 @@ public class Reception extends javax.swing.JFrame {
     }
 
     private void consultBill() {
-        String yourBill = "300";
+        int yourBill = 300;
         try {
             Connection conn = DriverManager.getConnection(url, "root", pwd);
             String query = "INSERT INTO billing (patientid, consultationcost, date)" 
                           + "VALUES(?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, ptTextField.getText());
-            ps.setString(2, yourBill);
+            ps.setString(2, String.valueOf(yourBill));
             ps.setString(3, dateLbl.getText());
                 
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "printing receipt...");
-        } catch (Exception ex){
+        } catch (SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
         }
     }

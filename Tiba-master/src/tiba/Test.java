@@ -513,7 +513,8 @@ public class Test extends javax.swing.JFrame {
 //                testBill();
         try {
             Connection con = DriverManager.getConnection(url, "root", pwd);
-            String query = "UPDATE billing SET testid=?, testcost=? WHERE patientid=?";
+            String query = "UPDATE billing SET testid=?, testcost=? WHERE patientid='"+jTextField1.getText()+"'"
+                    + "VALUES(?,?)";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, idjTextField1.getText());
             ps.setString(2, unitCostjTextField3.getText());
