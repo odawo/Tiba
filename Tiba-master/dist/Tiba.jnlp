@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Tiba.jar" size="218601" download="eager" />
+    <jar href="Tiba.jar" size="218142" download="eager" />
     <jar href="lib\HikariCP-2.4.2-RC2+SquidSolutions.jar" size="128473" download="eager" />
     <jar href="lib\activation.jar" size="55147" download="eager" />
     <jar href="lib\mail.jar" size="462098" download="eager" />

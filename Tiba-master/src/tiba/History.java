@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +25,6 @@ public class History extends javax.swing.JFrame {
     public String url = Tiba.mysqlurl;
     public String pwd = Tiba.mysqlpwd;
     
-    private Vector<Vector<String>> data; //used for data from database
     
     ResultSet rs;
     
@@ -300,11 +298,13 @@ public class History extends javax.swing.JFrame {
     private void fetchHistory() {
                 try {
             Connection conn = DriverManager.getConnection(url, "root", pwd);
-//            historyid, patientid, doctorid, medicationid, testid, diagnosisid
-            String query = "SELECT patientid, doctorid, medicineid, "
-                    + "testid, diagnosis FROM patient, pharmlab, patientresult "
-                    + " WHERE patient.patientid = pharmlab.patientid"
-                    + " AND pharmlab.patientid = patientresult.patientid"; 
+            String query = "SELECT patient.patientid, doctor.doctorid, medication.medicineid, tests.testid, pharmlab.diagnosis "
+                    + " FROM patient, pharmlab, patientresult, prescription, doctor "
+                    + "INNER JOIN pharmlab ON patient.patientid = pharmlab.patientid"
+                    + "INNER JOIN pharmlab ON doctor.doctorid = pharmlab.doctorid "
+                    + "INNER JOIN patientresult ON test.testid = patientresult.testid "
+                    + "INNER JOIN precription ON medication.medicineid = prescription.medicineid "
+                    + "INNER JOIN pharmlab ON pharmlab.diagnosis = pharmlab.diagnosis "; 
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs1 = pst.executeQuery();
 
