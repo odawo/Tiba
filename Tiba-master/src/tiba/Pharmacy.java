@@ -57,8 +57,14 @@ public class Pharmacy extends javax.swing.JFrame {
         refreshjButton = new javax.swing.JButton();
         patientMedsjButton = new javax.swing.JButton();
         exitjButton1 = new javax.swing.JButton();
+        newMedsButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        ptidTxtField = new javax.swing.JTextField();
+        drIDTextField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        reqjTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,7 +98,7 @@ public class Pharmacy extends javax.swing.JFrame {
                 .addComponent(IDlabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(phamIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -138,28 +144,41 @@ public class Pharmacy extends javax.swing.JFrame {
             }
         });
 
+        newMedsButton.setText("ADD MEDS");
+        newMedsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMedsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(refreshjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(patientMedsjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exitjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(refreshjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(patientMedsjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exitjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(newMedsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(refreshjButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(patientMedsjButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newMedsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitjButton1)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,6 +202,34 @@ public class Pharmacy extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        reqjTextArea1.setColumns(20);
+        reqjTextArea1.setRows(5);
+        jScrollPane2.setViewportView(reqjTextArea1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(drIDTextField)
+                    .addComponent(ptidTxtField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ptidTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(drIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +241,9 @@ public class Pharmacy extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -202,10 +251,15 @@ public class Pharmacy extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -219,23 +273,23 @@ public class Pharmacy extends javax.swing.JFrame {
 
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
         // TODO add your handling code here:
-//        try {
-//
-//            Connection conn =  DriverManager.getConnection(url, "root", pwd);
-//            String query = "SELECT patientid, fname, mname, lname, doctorid, requests, department FROM pharmlab where department=?";
-//            PreparedStatement pst = conn.prepareStatement(query);
-//            pst.setString(1, searchTextField.getText());
-//            pst.executeQuery();
-//
-//            ResultSet rs = null;
-//            while (rs.next()) {
-////                search the database and display into jtable
-////
-////
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+        try {
+
+            Connection conn =  DriverManager.getConnection(url, "root", pwd);
+            String query = "SELECT patientid, doctorid, requests FROM pharmlab where patientid=?";
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, searchTextField.getText());
+            pst.executeQuery();
+
+            ResultSet rs = null;
+            while (rs.next()) {
+                ptidTxtField.setText(rs.getString("patientid"));
+                drIDTextField.setText(rs.getString("doctorid"));
+                reqjTextArea1.setText(rs.getString("requests"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
 
 //      search and filter the jtable
         TableModel model = new DefaultTableModel();
@@ -256,31 +310,19 @@ public class Pharmacy extends javax.swing.JFrame {
 
     private void patientMedsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientMedsjButtonActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            String pid = jTable1.getValueAt(i, 0).toString();
-            String fname = jTable1.getValueAt(i, 1).toString();
-            String mname = jTable1.getValueAt(i, 2).toString();
-            String lname = jTable1.getValueAt(i, 3).toString();
-            String meds = jTable1.getValueAt(i, 4).toString();
+            String pid = ptidTxtField.getText();
+            String drid = drIDTextField.getText();
+            String req = reqjTextArea1.getText();
             
-            int row =  jTable1.getSelectedRow();
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-            String selected = model.getValueAt(row, 0).toString();
-            if (row == 0) {
+            String M = pid +"/t "+ "Dr ID:"+ drid +"/t "+ "Required : "+ req;
+            String phaminfo[] = new String[1];
+            phaminfo[0] = M;
+            Medicine.main(phaminfo);
                 
-                String M = fname +"/t"+ mname +"/t"+ lname +"/n"+ meds;
-                String p = pid;
+//                String phampinfo[] = new String[1];
+//                phampinfo[1] = p;
+//                Medicine.main(phampinfo);
                 
-                String phaminfo[] = new String[1];
-                phaminfo[0] = M;
-                Medicine.main(phaminfo);
-                
-                String phampinfo[] = new String[1];
-                phampinfo[1] = p;
-                Medicine.main(phampinfo);
-                
-            }
-        }
         if(pharmacy==null) {
             this.dispose();
             pharmacy = new Pharmacy();
@@ -292,6 +334,12 @@ public class Pharmacy extends javax.swing.JFrame {
         this.dispose();
         new Home().setVisible(true);
     }//GEN-LAST:event_exitjButton1ActionPerformed
+
+    private void newMedsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMedsButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new Medicine().setVisible(true);
+    }//GEN-LAST:event_newMedsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,15 +359,21 @@ public class Pharmacy extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IDlabel;
     private javax.swing.JLabel dateLbl1;
+    private javax.swing.JTextField drIDTextField;
     private javax.swing.JButton exitjButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton newMedsButton;
     private javax.swing.JButton patientMedsjButton;
     private javax.swing.JLabel phamIDLbl;
+    private javax.swing.JTextField ptidTxtField;
     private javax.swing.JButton refreshjButton;
+    private javax.swing.JTextArea reqjTextArea1;
     private javax.swing.JTextField searchTextField;
     // End of variables declaration//GEN-END:variables
 
@@ -330,8 +384,9 @@ public class Pharmacy extends javax.swing.JFrame {
     private void fetchData() {
         try {
             ResultSet rs = null;
+            String pharmacy = "pharmacy";
             Connection conn = DriverManager.getConnection(url, "root", pwd);
-            String query = "SELECT * FROM pharmlab WHERE department='pharmacy'";
+            String query = "SELECT * FROM pharmlab WHERE department='"+pharmacy+"'";
             PreparedStatement pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
             

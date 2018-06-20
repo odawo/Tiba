@@ -5,6 +5,7 @@
  */
 package tiba;
 
+import POJO.UserPatient;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -52,7 +53,6 @@ public class Lab extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         labjTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        pIDjTextField = new javax.swing.JTextField();
         fnamejTextField = new javax.swing.JTextField();
         mnamejTextField = new javax.swing.JTextField();
         lnamejTextField = new javax.swing.JTextField();
@@ -60,6 +60,7 @@ public class Lab extends javax.swing.JFrame {
         deptjTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         requestsjTextArea1 = new javax.swing.JTextArea();
+        pidLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         refreshjButton = new javax.swing.JButton();
         testjButton = new javax.swing.JButton();
@@ -97,31 +98,34 @@ public class Lab extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 461, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(343, 343, 343))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(IDlabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
+                        .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(IDlabel)
                         .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dateLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -147,8 +151,6 @@ public class Lab extends javax.swing.JFrame {
         jScrollPane1.setViewportView(labjTable1);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 102, 102), null, new java.awt.Color(0, 102, 102)));
-
-        pIDjTextField.setEditable(false);
 
         fnamejTextField.setText("First Name");
         fnamejTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -179,20 +181,23 @@ public class Lab extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(deptjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pIDjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fnamejTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mnamejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                     .addComponent(lnamejTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(drIDjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pIDjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
+                .addComponent(pidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +209,7 @@ public class Lab extends javax.swing.JFrame {
                 .addComponent(deptjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
@@ -318,7 +323,7 @@ public class Lab extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             
             while (rs.next()) {                
-                pIDjTextField.setText(rs.getString("patientid"));
+                pidLabel.setText(rs.getString("patientid"));
                 fnamejTextField.setText(rs.getString("fname"));
                 mnamejTextField.setText(rs.getString("mname"));
                 lnamejTextField.setText(rs.getString("lname"));
@@ -338,15 +343,19 @@ public class Lab extends javax.swing.JFrame {
     private void testjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testjButtonActionPerformed
         // TODO add your handling code here:
         
-        String linfo[] = new String[1];
-        String lid = labIDlabel.getText();
-//        String pid = pIDjTextField.getText();
-//        String pinfo = requestsjTextArea1.getText();
-        linfo[0] = lid;
-//        linfo[1] = pid;
-//        linfo[2] = pinfo;
-        Test.main(linfo);
-       
+        String lid[] = new String[1];
+        String j = labIDlabel.getText() + ", Patient ID :" + pidLabel.getText();
+        lid[0] = j;
+        Test.main(lid);
+        
+//        patientData();
+        
+        UserPatient up = new UserPatient();
+        String r = requestsjTextArea1.getText();
+        int x = Integer.parseInt(pidLabel.getText());
+        up.setId(x);
+        up.setTestNeeded(r);
+        
         this.dispose();
         new Test().setVisible(true);
     }//GEN-LAST:event_testjButtonActionPerformed
@@ -402,7 +411,7 @@ public class Lab extends javax.swing.JFrame {
     private javax.swing.JTable labjTable1;
     private javax.swing.JTextField lnamejTextField;
     private javax.swing.JTextField mnamejTextField;
-    private javax.swing.JTextField pIDjTextField;
+    private javax.swing.JLabel pidLabel;
     private javax.swing.JButton refreshjButton;
     private javax.swing.JTextArea requestsjTextArea1;
     private javax.swing.JTextField searchTextField;
@@ -435,4 +444,5 @@ public class Lab extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
 }

@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -67,6 +68,19 @@ public class Medicine extends javax.swing.JFrame {
         pidjLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        medidjTextField1 = new javax.swing.JTextField();
+        mednamejTextField2 = new javax.swing.JTextField();
+        confirmjRadioButton1 = new javax.swing.JRadioButton();
+        missedjRadioButton2 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        unitCostjTextField3 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        totalCostButton1 = new javax.swing.JTextField();
+        snoTextField = new javax.swing.JTextField();
+        expDate = new javax.swing.JTextField();
+        manDate1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,31 +233,163 @@ public class Medicine extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Medicine ID", "Medicine Name", "Confirm", "Medicine Cost ", "Serial No", "Manufacure Date", "Expiry Date"
+                "Medicine ID", "Medicine Name", "Medicine Cost ", "Serial No", "Manufacure Date", "Expiry Date"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false
+                false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 102, 102)));
+
+        medidjTextField1.setEditable(false);
+        medidjTextField1.setToolTipText("test id");
+
+        mednamejTextField2.setEditable(false);
+        mednamejTextField2.setToolTipText("test name");
+
+        confirmjRadioButton1.setText("confirm");
+        confirmjRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmjRadioButton1MouseClicked(evt);
+            }
+        });
+        confirmjRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmjRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        missedjRadioButton2.setText("missed");
+
+        jLabel3.setText("Unit Cost : ");
+
+        unitCostjTextField3.setEditable(false);
+
+        jTextField1.setText("patient id");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Total Cost : ");
+
+        totalCostButton1.setEditable(false);
+
+        snoTextField.setEditable(false);
+        snoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                snoTextFieldActionPerformed(evt);
+            }
+        });
+
+        expDate.setEditable(false);
+        expDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expDateActionPerformed(evt);
+            }
+        });
+
+        manDate1.setEditable(false);
+        manDate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manDate1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(snoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(medidjTextField1)
+                            .addComponent(mednamejTextField2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(manDate1))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(totalCostButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(expDate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(unitCostjTextField3)))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(confirmjRadioButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(missedjRadioButton2)
+                                .addGap(370, 370, 370))))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(medidjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(expDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 4, Short.MAX_VALUE)
+                                .addComponent(mednamejTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(unitCostjTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(snoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(confirmjRadioButton1)
+                            .addComponent(missedjRadioButton2))
+                        .addGap(30, 30, 30)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(totalCostButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -258,9 +404,12 @@ public class Medicine extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -273,7 +422,9 @@ public class Medicine extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -407,6 +558,69 @@ public class Medicine extends javax.swing.JFrame {
         new Lab().setVisible(true);
     }//GEN-LAST:event_exitjButtonActionPerformed
 
+    private void confirmjRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmjRadioButton1MouseClicked
+        // TODO add your handling code here:
+        try{
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            String query = "INSERT INTO prescription (patientid, medicineid, medname, medcost, serialno,"
+                    + "manufacturedate, expirydate, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, jTextField1.getText());
+            ps.setString(2, medidjTextField1.getText());
+            ps.setString(3, mednamejTextField2.getText());
+            ps.setString(4, unitCostjTextField3.getText());
+            ps.setString(5, snoTextField.getText());
+            ps.setString(6, manDate1.getText());
+            ps.setString(7, expDate.getText());
+            ps.setString(8, dateLbl.getText());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "SAVED");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_confirmjRadioButton1MouseClicked
+
+    private void confirmjRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            String query = "INSERT INTO prescription (patientid, medicineid, medname, medcost, serialno,"
+                    + "manufacturedate, expirydate, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, jTextField1.getText());
+            ps.setString(2, medidjTextField1.getText());
+            ps.setString(3, mednamejTextField2.getText());
+            ps.setString(4, unitCostjTextField3.getText());
+            ps.setString(5, snoTextField.getText());
+            ps.setString(6, manDate1.getText());
+            ps.setString(7, expDate.getText());
+            ps.setString(8, dateLbl.getText());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "SAVED");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }//GEN-LAST:event_confirmjRadioButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void snoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_snoTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_snoTextFieldActionPerformed
+
+    private void expDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_expDateActionPerformed
+
+    private void manDate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manDate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manDate1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,26 +640,38 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JLabel PhamIdlabel1;
     private javax.swing.JButton addMjButton;
     private javax.swing.JButton completeBtn;
+    private javax.swing.JRadioButton confirmjRadioButton1;
     private javax.swing.JLabel dateLbl;
     private javax.swing.JButton exitjButton;
+    private javax.swing.JTextField expDate;
     private javax.swing.JLabel idlabel;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField manDate1;
+    private javax.swing.JTextField medidjTextField1;
+    private javax.swing.JTextField mednamejTextField2;
+    private javax.swing.JRadioButton missedjRadioButton2;
     private javax.swing.JTextArea patientmedsjTextArea;
     private javax.swing.JLabel pidjLabel1;
     private javax.swing.JButton rmMjButton;
     private javax.swing.JTextField searchTextField;
+    private javax.swing.JTextField snoTextField;
+    private javax.swing.JTextField totalCostButton1;
+    private javax.swing.JTextField unitCostjTextField3;
     // End of variables declaration//GEN-END:variables
 
     private void setDate() {
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(calendar.getTime().getDate());
+        java.time.LocalDate date = LocalDate.now();
         dateLbl.setText(date.toString());
     }
 

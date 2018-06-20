@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ThreadLocalRandom;
@@ -665,8 +666,6 @@ public class Reception extends javax.swing.JFrame {
     
     private void randomId() {
         int r = ThreadLocalRandom.current().nextInt(10000);
-//        String z = "jssjsj";
-//        patientIDTextField.setText(String.valueOf(r));
         ptTextField.setText(String.valueOf(r));
     }
 
@@ -684,9 +683,7 @@ public class Reception extends javax.swing.JFrame {
     }
 
     private void setDate() {
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(Calendar.DAY_OF_MONTH);
-//        Date date = new Date(calendar.getTime().getDate());
+        java.time.LocalDate date = LocalDate.now();
         dateLbl.setText(date.toString());
     }
 

@@ -5,6 +5,7 @@
  */
 package tiba;
 
+import POJO.UserPatient;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -40,7 +40,8 @@ public class Test extends javax.swing.JFrame {
         initComponents();
         
         getDate();
-        getRequests();
+        getlabID();
+        getPatientData();
         testsDone();
         fetchTests();
         getTotalCost();
@@ -88,6 +89,8 @@ public class Test extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         unitCostjTextField3 = new javax.swing.JTextField();
         totalCostButton = new javax.swing.JTextField();
+        confirmjButton = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,34 +120,38 @@ public class Test extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(343, 343, 343))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
-                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(247, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(219, 219, 219)
+                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labIDlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labIDlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -297,6 +304,11 @@ public class Test extends javax.swing.JFrame {
         namejTextField2.setToolTipText("test name");
 
         confirmjRadioButton1.setText("confirm");
+        confirmjRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmjRadioButton1MouseClicked(evt);
+            }
+        });
         confirmjRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmjRadioButton1ActionPerformed(evt);
@@ -325,32 +337,49 @@ public class Test extends javax.swing.JFrame {
 
         totalCostButton.setEditable(false);
 
+        confirmjButton.setText("CONFIRM");
+        confirmjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmjButtonActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("patient id");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namejTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(idjTextField1)
+                    .addComponent(namejTextField2)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jTextField1))
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(totalCostButton))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(confirmjRadioButton1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(missedjRadioButton2)
-                            .addComponent(unitCostjTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(totalCostButton))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(confirmjRadioButton1))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(missedjRadioButton2)
+                                .addComponent(unitCostjTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(confirmjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -362,7 +391,9 @@ public class Test extends javax.swing.JFrame {
                         .addComponent(idjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(namejTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(8, 8, 8)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +404,9 @@ public class Test extends javax.swing.JFrame {
                                 .addGap(33, 33, 33)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(missedjRadioButton2)
-                                    .addComponent(confirmjRadioButton1)))
+                                    .addComponent(confirmjRadioButton1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(confirmjButton))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,13 +471,14 @@ public class Test extends javax.swing.JFrame {
             rowSorter.setRowFilter(RowFilter.regexFilter(search));
         }
         
+        
+        ResultSet rs = null;
         try {
-            
             Connection conn =  DriverManager.getConnection(url, "root", pwd);
-            String query = "SELECT * FROM tests WHERE testname=?";
+            String query = "SELECT testid, testname, testcost FROM tests WHERE testid=?";
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, searchTextField.getText());
-            ResultSet rs = pst.executeQuery();
+             rs = pst.executeQuery();
             
             while (rs.next()) {                
                 idjTextField1.setText(rs.getString("testid"));
@@ -465,7 +499,6 @@ public class Test extends javax.swing.JFrame {
         String name = JOptionPane.showInputDialog("TEST NAME : ");
         String cost = JOptionPane.showInputDialog("COST : ");
         
-//        System.out.println("id: " + id + "name: " + name + "cost: " + cost);
         try {
             Connection conn = DriverManager.getConnection(url, "root", pwd);
                     String query = "INSERT INTO tests (testid, testname, testcost)" 
@@ -489,22 +522,15 @@ public class Test extends javax.swing.JFrame {
         
         int option = JOptionPane.showConfirmDialog(null, "Delete testID ?", "DELETE", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
-//            int row =  jTable1.getSelectedRow();
-//            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        
-//            String selected = model.getValueAt(row, 0).toString();
-//            if (row == 0) {
-//                model.removeRow(row);
-                try {
-                    Connection conn = DriverManager.getConnection(url, "root", pwd);
-                    String query = "DELETE FROM tests WHERE testid =?";
-                    PreparedStatement ps = conn.prepareStatement(query);
-//                    ps.setString(1, selected);
-                    ps.executeUpdate();
+            try {
+                Connection conn = DriverManager.getConnection(url, "root", pwd);
+                String query = "DELETE FROM tests WHERE testid =?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.executeUpdate();
                 
-                    JOptionPane.showMessageDialog(null, " TEST DELETED.");
-                } catch (SQLException | HeadlessException e) {
-                    JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, " TEST DELETED.");
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(null, e);
             }
 
         }
@@ -513,20 +539,22 @@ public class Test extends javax.swing.JFrame {
     private void submitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitjButtonActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "generate costs bill");
-//        for (int i = 0; i < jTable1.getRowCount(); i++) {
-//            String col = jTable1.getValueAt(i, 1).toString();
-//            String tid = jTable1.getValueAt(i, 0).toString();
-//            String tname = jTable1.getValueAt(i, 1).toString();
-//            Boolean checked = Boolean.valueOf(jTable1.getValueAt(i, 2).toString());
-//            String toutcome = jTable1.getValueAt(i, 3).toString();
-//            String tcost = jTable1.getValueAt(i, 4).toString();
-////            String colindex = jTable1.getModel().getValueAt(row, col);
-//            if (checked) {
-//                JOptionPane.showMessageDialog(null, "testing if it works " + tid + tname + tcost); //col
-//                Double totTestCosts = (Double.parseDouble(tcost));
-//                JOptionPane.showMessageDialog(null, "to show sum of all test costs "+totTestCosts);
-//                
-                testBill();
+//                testBill();
+        try {
+                    Connection con = DriverManager.getConnection(url, "root", pwd);
+                    String query = "UPDATE billing SET testid=?, testcost=? WHERE patientid=?";
+                    PreparedStatement ps = con.prepareStatement(query);
+                    ps.setString(1, idjTextField1.getText());
+                    ps.setString(2, unitCostjTextField3.getText());
+
+                    ps.executeQuery();
+
+    //                printReceipt();
+                    JOptionPane.showMessageDialog(null, "printing receipt...");
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
 //                
 //                try {
 //                    Connection conn = DriverManager.getConnection(url, "root", pwd);
@@ -566,7 +594,56 @@ public class Test extends javax.swing.JFrame {
 
     private void confirmjRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjRadioButton1ActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_confirmjRadioButton1ActionPerformed
+
+    private void confirmjRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmjRadioButton1MouseClicked
+        // TODO add your handling code here:
+         if (confirmjRadioButton1.isSelected()) {
+            try{
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            String query = "INSERT INTO patientresult (patientid, testid, testname, testoutcome, testdate)" 
+                            + "VALUES(?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, patIDlabl.getText());
+            ps.setString(2, idjTextField1.getText());
+            ps.setString(3, namejTextField2.getText());
+            ps.setString(4, outcomejTextArea2.getText());
+            ps.setString(5, dateLbl.getText());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "SAVED");
+            } catch(SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else if (missedjRadioButton2.isSelected()) {
+            reasonjTextArea1.setEnabled(true);
+        }
+    }//GEN-LAST:event_confirmjRadioButton1MouseClicked
+
+    private void confirmjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjButtonActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection con = DriverManager.getConnection(url, "root", pwd);
+            String query = "INSERT INTO patientresult (patientid, testid, testname, testoutcome, testdate)" 
+                            + "VALUES(?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, jTextField1.getText());
+            ps.setString(2, idjTextField1.getText());
+            ps.setString(3, namejTextField2.getText());
+            ps.setString(4, outcomejTextArea2.getText());
+            ps.setString(5, dateLbl.getText());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "SAVED");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_confirmjButtonActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,8 +651,6 @@ public class Test extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         lidtext = args[0];
-//        pidtext = args[1];
-//        pinfotext = args[2];
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -586,6 +661,7 @@ public class Test extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addTjButton;
+    private javax.swing.JButton confirmjButton;
     private javax.swing.JRadioButton confirmjRadioButton1;
     private javax.swing.JLabel dateLbl;
     private javax.swing.JButton exitjButton;
@@ -605,6 +681,7 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labIDlabel;
     private javax.swing.JRadioButton missedjRadioButton2;
     private javax.swing.JTextField namejTextField2;
@@ -625,32 +702,24 @@ public class Test extends javax.swing.JFrame {
         dateLbl.setText(localDate.toString());
     }
 
-    private void getRequests() {
+    private void getlabID() {
         labIDlabel.setText(lidtext);
-//        patIDlabl.setText(pidtext);
-//        patienttestjTextArea.setText(pinfotext);
+    }
+    
+    private void getPatientData() {
+        UserPatient patient = new UserPatient();
+        patIDlabl.setText(String.valueOf(patient.getId()));
+        patienttestjTextArea.setText(patient.getTestNeeded());
     }
 
     private void fetchTests() {
-        
-//        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-//        int i = 0;
-//        Boolean checked = false;
+     
         try {
             ResultSet rs = null;
             Connection conn = DriverManager.getConnection(url, "root", pwd);
             String query = "SELECT * FROM tests";
             PreparedStatement pst = conn.prepareStatement(query);
             rs =  pst.executeQuery();
-            
-//            while(rs.next()){
-//                String id = rs.getString("testid");
-//                String name = rs.getString("testname");
-////                checked = rs.getBoolean("outcome");
-//                String cost = rs.getString("testcost");
-//                model.addRow(new Object[]{id, name, cost});
-//                i++;
-//            }
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
 
@@ -661,23 +730,12 @@ public class Test extends javax.swing.JFrame {
 
     private void testBill() {
         
-//        for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-//            String tid = jTable1.getValueAt(i, 0).toString();
-//            String tname = jTable1.getValueAt(i, 1).toString();
-//            Boolean checked = Boolean.valueOf(jTable1.getValueAt(i, 2).toString());
-//            String toutcome = jTable1.getValueAt(i, 3).toString();
-//            String tcost = jTable1.getValueAt(i, 4).toString();
-            
             try {
                 Connection con = DriverManager.getConnection(url, "root", pwd);
-                String query = "UPDATE billing SET testid=?, testcost=? WHERE patientid=?";
-    //            UPDATE billing SET testid=?, testcost=? WHERE patientid=? AND date =?
+                String query = "UPDATE billing SET testid=?, testcost=? WHERE patientid='"+patIDlabl.getText()+"'";
                 PreparedStatement ps = con.prepareStatement(query);
-//                ps.setString(1, patIDlabl.getText());
                 ps.setString(1, idjTextField1.getText());
                 ps.setString(2, unitCostjTextField3.getText());
-//                ps.setString(4, dateLbl.getText());
 
                 ps.executeQuery();
                 
@@ -714,24 +772,6 @@ public class Test extends javax.swing.JFrame {
         bg.add(confirmjRadioButton1);
         bg.add(missedjRadioButton2);
         
-        if (confirmjRadioButton1.isSelected()) {
-            try{
-            Connection con = DriverManager.getConnection(url, "root", pwd);
-            String query = "INSERT INTO patientresult (patientid, testid, testname, testoutcome, testdate)" 
-                            + "VALUES(?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, patIDlabl.getText());
-            ps.setString(2, idjTextField1.getText());
-            ps.setString(3, namejTextField2.getText());
-            ps.setString(4, outcomejTextArea2.getText());
-            ps.setString(5, dateLbl.getText());
-            ps.executeUpdate();
-            } catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        } else if (missedjRadioButton2.isSelected()) {
-            reasonjTextArea1.setEnabled(true);
-        }
-        
     }
+
 }
